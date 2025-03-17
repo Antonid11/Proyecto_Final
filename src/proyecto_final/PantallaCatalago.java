@@ -5,13 +5,8 @@
 package proyecto_final;
 
 import java.util.ArrayList;
-import javax.swing.ButtonGroup;
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.JList;
-import javax.swing.JPanel;
-import javax.swing.JRadioButton;
-import javax.swing.JScrollPane;
+
+import javax.swing.DefaultListModel;
 
 /**
  *
@@ -22,195 +17,47 @@ public class PantallaCatalago extends javax.swing.JFrame {
     private String nombre;
     private Catalogo catalogo;
     private Carrito carrito;
-    private ArrayList<Producto> listaProducto;
+    private ArrayList<Producto> Frutas_Verduras = new ArrayList<Producto>();
+    private ArrayList<Producto> Lacteos = new ArrayList<Producto>();
+    private ArrayList<Producto> Abarrotes = new ArrayList<Producto>();
+    private ArrayList<Producto> Bebidas = new ArrayList<Producto>();
+    private static Catalogo cat = new Catalogo();
 
     /**
      * Creates new form PantallaCatalago
      */
     public PantallaCatalago(String nombre) {
         initComponents();
+        inicializarArrayList();
         this.nombre = nombre;
         this.catalogo = new Catalogo();
         this.carrito = new Carrito();
-        this.listaProducto = new ArrayList<>();
         setLocationRelativeTo(null);
         setTitle("Supermercado en línea - Catálogo");
         jLabelBienvenida.setText("Bienvenido/a " + nombre + "! Selecciona tus Productos:");
-        jPanelCategorias.add(jLabelCategorias);
-        javax.swing.JPanel radioPanel = new javax.swing.JPanel();
-        javax.swing.ButtonGroup grupoCategorias = new javax.swing.ButtonGroup();
-        String[] categorias = {"Frutas y Verduras", "Lácteos", "Abarrotes", "Bebidas"};
+
     }
 
-    public JLabel getjLabel1() {
-        return jLabelBienvenida;
+    public void inicializarArrayList() {
+        Producto[][] Temporal = new Producto[4][5];
+        Temporal = cat.getProductos();
+
+        for (int i = 0; i < Temporal.length; i++) {
+            for (int j = 0; j < Temporal[i].length; j++) {
+                if (i == 0) {
+                    Frutas_Verduras.add(Temporal[i][j]);
+                } else if (i == 1) {
+                    Lacteos.add(Temporal[i][j]);
+                } else if (i == 2) {
+                    Abarrotes.add(Temporal[i][j]);
+                } else if (i == 3) {
+                    Bebidas.add(Temporal[i][j]);
+                }
+            }
+        }
+
     }
 
-    public void setjLabel1(JLabel jLabel1) {
-        this.jLabelBienvenida = jLabel1;
-    }
-
-    public JPanel getjPanel1() {
-        return jPanel1;
-    }
-
-    public void setjPanel1(JPanel jPanel1) {
-        this.jPanel1 = jPanel1;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public Catalogo getCatalogo() {
-        return catalogo;
-    }
-
-    public void setCatalogo(Catalogo catalogo) {
-        this.catalogo = catalogo;
-    }
-
-    public Carrito getCarrito() {
-        return carrito;
-    }
-
-    public void setCarrito(Carrito carrito) {
-        this.carrito = carrito;
-    }
-
-    public ArrayList<Producto> getListaProducto() {
-        return listaProducto;
-    }
-
-    public void setListaProducto(ArrayList<Producto> listaProducto) {
-        this.listaProducto = listaProducto;
-    }
-
-    public ButtonGroup getGrupoCategorias() {
-        return grupoCategorias;
-    }
-
-    public void setGrupoCategorias(ButtonGroup grupoCategorias) {
-        this.grupoCategorias = grupoCategorias;
-    }
-
-    public JButton getjButton1() {
-        return jButton1;
-    }
-
-    public void setjButton1(JButton jButton1) {
-        this.jButton1 = jButton1;
-    }
-
-    public JButton getjButton2() {
-        return jButton2;
-    }
-
-    public void setjButton2(JButton jButton2) {
-        this.jButton2 = jButton2;
-    }
-
-    public JLabel getjLabelBienvenida() {
-        return jLabelBienvenida;
-    }
-
-    public void setjLabelBienvenida(JLabel jLabelBienvenida) {
-        this.jLabelBienvenida = jLabelBienvenida;
-    }
-
-    public JLabel getjLabelCategorias() {
-        return jLabelCategorias;
-    }
-
-    public void setjLabelCategorias(JLabel jLabelCategorias) {
-        this.jLabelCategorias = jLabelCategorias;
-    }
-
-    public JList<String> getjList1() {
-        return jList1;
-    }
-
-    public void setjList1(JList<String> jList1) {
-        this.jList1 = jList1;
-    }
-
-    public JPanel getjPanelBienvenida() {
-        return jPanelBienvenida;
-    }
-
-    public void setjPanelBienvenida(JPanel jPanelBienvenida) {
-        this.jPanelBienvenida = jPanelBienvenida;
-    }
-
-    public JPanel getjPanelButtons() {
-        return jPanelButtons;
-    }
-
-    public void setjPanelButtons(JPanel jPanelButtons) {
-        this.jPanelButtons = jPanelButtons;
-    }
-
-    public JPanel getjPanelCategorias() {
-        return jPanelCategorias;
-    }
-
-    public void setjPanelCategorias(JPanel jPanelCategorias) {
-        this.jPanelCategorias = jPanelCategorias;
-    }
-
-    public JPanel getjPanelCentral() {
-        return jPanelCentral;
-    }
-
-    public void setjPanelCentral(JPanel jPanelCentral) {
-        this.jPanelCentral = jPanelCentral;
-    }
-
-    public JRadioButton getjRadioButton1() {
-        return jRadioButton1;
-    }
-
-    public void setjRadioButton1(JRadioButton jRadioButton1) {
-        this.jRadioButton1 = jRadioButton1;
-    }
-
-    public JRadioButton getjRadioButton2() {
-        return jRadioButton2;
-    }
-
-    public void setjRadioButton2(JRadioButton jRadioButton2) {
-        this.jRadioButton2 = jRadioButton2;
-    }
-
-    public JRadioButton getjRadioButton3() {
-        return jRadioButton3;
-    }
-
-    public void setjRadioButton3(JRadioButton jRadioButton3) {
-        this.jRadioButton3 = jRadioButton3;
-    }
-
-    public JRadioButton getjRadioButton4() {
-        return jRadioButton4;
-    }
-
-    public void setjRadioButton4(JRadioButton jRadioButton4) {
-        this.jRadioButton4 = jRadioButton4;
-    }
-
-    public JScrollPane getjScrollPane1() {
-        return jScrollPane1;
-    }
-
-    public void setjScrollPane1(JScrollPane jScrollPane1) {
-        this.jScrollPane1 = jScrollPane1;
-    }
-
-    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -221,6 +68,13 @@ public class PantallaCatalago extends javax.swing.JFrame {
     private void initComponents() {
 
         grupoCategorias = new javax.swing.ButtonGroup();
+        jDialog1 = new javax.swing.JDialog();
+        jPanel2 = new javax.swing.JPanel();
+        jPanelCarrito = new javax.swing.JPanel();
+        jLabelCarrito = new javax.swing.JLabel();
+        jPanelCentralCarrito = new javax.swing.JPanel();
+        JPanelProductosCarrito = new javax.swing.JScrollPane();
+        JListProductosCarrito = new javax.swing.JList<>();
         jPanel1 = new javax.swing.JPanel();
         jPanelCentral = new javax.swing.JPanel();
         jPanelCategorias = new javax.swing.JPanel();
@@ -229,14 +83,96 @@ public class PantallaCatalago extends javax.swing.JFrame {
         jRadioButton3 = new javax.swing.JRadioButton();
         jRadioButton4 = new javax.swing.JRadioButton();
         jLabelCategorias = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
+        JPanelProductos = new javax.swing.JScrollPane();
+        JListProductos = new javax.swing.JList<>();
         jPanelBienvenida = new javax.swing.JPanel();
         jLabelBienvenida = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jPanelButtons = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        VerCarrito = new javax.swing.JButton();
+        AgregarAlCarrito = new javax.swing.JButton();
+
+        jDialog1.setMinimumSize(new java.awt.Dimension(725, 372));
+
+        jPanel2.setBackground(new java.awt.Color(204, 204, 255));
+
+        jPanelCarrito.setBackground(new java.awt.Color(102, 102, 255));
+
+        jLabelCarrito.setFont(new java.awt.Font("Segoe UI Black", 0, 16)); // NOI18N
+        jLabelCarrito.setForeground(new java.awt.Color(255, 255, 255));
+        jLabelCarrito.setText("Carrito");
+
+        javax.swing.GroupLayout jPanelCarritoLayout = new javax.swing.GroupLayout(jPanelCarrito);
+        jPanelCarrito.setLayout(jPanelCarritoLayout);
+        jPanelCarritoLayout.setHorizontalGroup(
+            jPanelCarritoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelCarritoLayout.createSequentialGroup()
+                .addGap(295, 295, 295)
+                .addComponent(jLabelCarrito)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanelCarritoLayout.setVerticalGroup(
+            jPanelCarritoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabelCarrito, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
+        );
+
+        jPanelCentralCarrito.setBackground(new java.awt.Color(255, 255, 255));
+
+        JPanelProductosCarrito.setBackground(new java.awt.Color(255, 255, 255));
+        JPanelProductosCarrito.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 255)));
+
+        JListProductosCarrito.setBackground(new java.awt.Color(255, 255, 255));
+        JListProductosCarrito.setForeground(new java.awt.Color(0, 0, 0));
+        JPanelProductosCarrito.setViewportView(JListProductosCarrito);
+
+        javax.swing.GroupLayout jPanelCentralCarritoLayout = new javax.swing.GroupLayout(jPanelCentralCarrito);
+        jPanelCentralCarrito.setLayout(jPanelCentralCarritoLayout);
+        jPanelCentralCarritoLayout.setHorizontalGroup(
+            jPanelCentralCarritoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelCentralCarritoLayout.createSequentialGroup()
+                .addGap(16, 16, 16)
+                .addComponent(JPanelProductosCarrito, javax.swing.GroupLayout.PREFERRED_SIZE, 645, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(17, Short.MAX_VALUE))
+        );
+        jPanelCentralCarritoLayout.setVerticalGroup(
+            jPanelCentralCarritoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelCentralCarritoLayout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(JPanelProductosCarrito, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(21, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(26, 26, 26)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanelCentralCarrito, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanelCarrito, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(21, 21, 21))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(27, 27, 27)
+                .addComponent(jPanelCarrito, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jPanelCentralCarrito, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(21, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout jDialog1Layout = new javax.swing.GroupLayout(jDialog1.getContentPane());
+        jDialog1.getContentPane().setLayout(jDialog1Layout);
+        jDialog1Layout.setHorizontalGroup(
+            jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        jDialog1Layout.setVerticalGroup(
+            jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -282,6 +218,11 @@ public class PantallaCatalago extends javax.swing.JFrame {
         grupoCategorias.add(jRadioButton4);
         jRadioButton4.setForeground(new java.awt.Color(0, 0, 0));
         jRadioButton4.setText("Bebidas");
+        jRadioButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton4ActionPerformed(evt);
+            }
+        });
 
         jLabelCategorias.setForeground(new java.awt.Color(0, 0, 0));
         jLabelCategorias.setText("Categorias: ");
@@ -316,17 +257,12 @@ public class PantallaCatalago extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jScrollPane1.setBackground(new java.awt.Color(255, 255, 255));
-        jScrollPane1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 255)));
+        JPanelProductos.setBackground(new java.awt.Color(255, 255, 255));
+        JPanelProductos.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 255)));
 
-        jList1.setBackground(new java.awt.Color(255, 255, 255));
-        jList1.setForeground(new java.awt.Color(0, 0, 0));
-        jList1.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        jScrollPane1.setViewportView(jList1);
+        JListProductos.setBackground(new java.awt.Color(255, 255, 255));
+        JListProductos.setForeground(new java.awt.Color(0, 0, 0));
+        JPanelProductos.setViewportView(JListProductos);
 
         javax.swing.GroupLayout jPanelCentralLayout = new javax.swing.GroupLayout(jPanelCentral);
         jPanelCentral.setLayout(jPanelCentralLayout);
@@ -335,7 +271,7 @@ public class PantallaCatalago extends javax.swing.JFrame {
             .addGroup(jPanelCentralLayout.createSequentialGroup()
                 .addGap(16, 16, 16)
                 .addGroup(jPanelCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane1)
+                    .addComponent(JPanelProductos)
                     .addComponent(jPanelCategorias, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(17, Short.MAX_VALUE))
         );
@@ -345,7 +281,7 @@ public class PantallaCatalago extends javax.swing.JFrame {
                 .addGap(15, 15, 15)
                 .addComponent(jPanelCategorias, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(JPanelProductos, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(19, Short.MAX_VALUE))
         );
 
@@ -379,23 +315,23 @@ public class PantallaCatalago extends javax.swing.JFrame {
 
         jPanelButtons.setBackground(new java.awt.Color(204, 204, 255));
 
-        jButton1.setBackground(new java.awt.Color(102, 102, 255));
-        jButton1.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Ver Carrito");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        VerCarrito.setBackground(new java.awt.Color(102, 102, 255));
+        VerCarrito.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
+        VerCarrito.setForeground(new java.awt.Color(255, 255, 255));
+        VerCarrito.setText("Ver Carrito");
+        VerCarrito.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                VerCarritoActionPerformed(evt);
             }
         });
 
-        jButton2.setBackground(new java.awt.Color(0, 153, 0));
-        jButton2.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("Agregar al Carrito");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        AgregarAlCarrito.setBackground(new java.awt.Color(0, 153, 0));
+        AgregarAlCarrito.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
+        AgregarAlCarrito.setForeground(new java.awt.Color(255, 255, 255));
+        AgregarAlCarrito.setText("Agregar al Carrito");
+        AgregarAlCarrito.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                AgregarAlCarritoActionPerformed(evt);
             }
         });
 
@@ -405,17 +341,17 @@ public class PantallaCatalago extends javax.swing.JFrame {
             jPanelButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelButtonsLayout.createSequentialGroup()
                 .addGap(65, 65, 65)
-                .addComponent(jButton1)
+                .addComponent(VerCarrito)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
-                .addComponent(jButton2))
+                .addComponent(AgregarAlCarrito))
         );
         jPanelButtonsLayout.setVerticalGroup(
             jPanelButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelButtonsLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanelButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(VerCarrito)
+                    .addComponent(AgregarAlCarrito))
                 .addContainerGap(9, Short.MAX_VALUE))
         );
 
@@ -459,24 +395,60 @@ public class PantallaCatalago extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
-        // TODO add your handling code here:
+        if (jRadioButton1.isSelected()) {
+            DefaultListModel ModeloLista = new DefaultListModel();
+
+            for (int i = 0; i < Frutas_Verduras.size(); i++) {
+                ModeloLista.addElement(Frutas_Verduras.get(i));
+            }
+
+            JListProductos.setModel(ModeloLista);
+
+        }
     }//GEN-LAST:event_jRadioButton1ActionPerformed
 
     private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2ActionPerformed
         // TODO add your handling code here:
+        if (jRadioButton2.isShowing()) {
+            DefaultListModel ModeloLista = new DefaultListModel();
+            for (int i = 0; i < Lacteos.size(); i++) {
+                ModeloLista.addElement(Lacteos.get(i));
+            }
+            JListProductos.setModel(ModeloLista);
+        }
     }//GEN-LAST:event_jRadioButton2ActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void VerCarritoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VerCarritoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+        jDialog1.setVisible(true);
+    }//GEN-LAST:event_VerCarritoActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void AgregarAlCarritoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgregarAlCarritoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_AgregarAlCarritoActionPerformed
 
     private void jRadioButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton3ActionPerformed
         // TODO add your handling code here:
+        if (jRadioButton3.isSelected()) {
+            DefaultListModel ModeloLista = new DefaultListModel();
+            for (int i = 0; i < Abarrotes.size(); i++) {
+                ModeloLista.addElement(Abarrotes.get(i));
+
+            }
+            JListProductos.setModel(ModeloLista);
+        }
     }//GEN-LAST:event_jRadioButton3ActionPerformed
+
+    private void jRadioButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton4ActionPerformed
+        // TODO add your handling code here:
+        if (jRadioButton4.isSelected()) {
+            DefaultListModel ModeloLista = new DefaultListModel();
+            for (int i = 0; i < Bebidas.size(); i++) {
+                ModeloLista.addElement(Bebidas.get(i));
+            }
+            JListProductos.setModel(ModeloLista);
+        }
+    }//GEN-LAST:event_jRadioButton4ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -514,22 +486,29 @@ public class PantallaCatalago extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton AgregarAlCarrito;
+    private javax.swing.JList<String> JListProductos;
+    private javax.swing.JList<String> JListProductosCarrito;
+    private javax.swing.JScrollPane JPanelProductos;
+    private javax.swing.JScrollPane JPanelProductosCarrito;
+    private javax.swing.JButton VerCarrito;
     private javax.swing.ButtonGroup grupoCategorias;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JDialog jDialog1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabelBienvenida;
+    private javax.swing.JLabel jLabelCarrito;
     private javax.swing.JLabel jLabelCategorias;
-    private javax.swing.JList<String> jList1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanelBienvenida;
     private javax.swing.JPanel jPanelButtons;
+    private javax.swing.JPanel jPanelCarrito;
     private javax.swing.JPanel jPanelCategorias;
     private javax.swing.JPanel jPanelCentral;
+    private javax.swing.JPanel jPanelCentralCarrito;
     private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JRadioButton jRadioButton3;
     private javax.swing.JRadioButton jRadioButton4;
-    private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }

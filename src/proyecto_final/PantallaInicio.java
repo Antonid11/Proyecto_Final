@@ -5,6 +5,7 @@
 package proyecto_final;
 
 import java.util.Scanner;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -140,7 +141,7 @@ public class PantallaInicio extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-        String nombre = javax.swing.JOptionPane.showInputDialog(this, "Por favor ingresa tu nombre: ");
+        String nombre = JOptionPane.showInputDialog(this, "Por favor ingresa tu nombre: ");
         if (!nombre.isBlank() && !nombre.isEmpty()) {
             PantallaCatalago catalogo = new PantallaCatalago(nombre);
             catalogo.setVisible(true);

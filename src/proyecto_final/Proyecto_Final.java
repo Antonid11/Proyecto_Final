@@ -9,6 +9,7 @@ import java.util.ArrayList;
 public class Proyecto_Final {
 
     static String nombreUsuario;
+    static Carrito carro = new Carrito ();
     static ArrayList<Producto> catalogoProductos = new ArrayList<>();
     static ArrayList<Producto> carrito = new ArrayList<>();
     static double totalCompra = 0.0;
