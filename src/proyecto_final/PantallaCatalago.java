@@ -32,7 +32,7 @@ public class PantallaCatalago extends javax.swing.JFrame {
         this.nombre = nombre;
         this.catalogo = new Catalogo();
         this.carrito = new Carrito();
-        this.listaProducto = new ArrayList<Producto>();
+        this.listaProducto = new ArrayList<>();
         setLocationRelativeTo(null);
         setTitle("Supermercado en línea - Catálogo");
         jLabelBienvenida.setText("Bienvenido/a " + nombre + "! Selecciona tus Productos:");
@@ -258,6 +258,7 @@ public class PantallaCatalago extends javax.swing.JFrame {
             }
         });
 
+        jRadioButton2.setBackground(new java.awt.Color(255, 255, 255));
         grupoCategorias.add(jRadioButton2);
         jRadioButton2.setForeground(new java.awt.Color(0, 0, 0));
         jRadioButton2.setText("Lacteos");
@@ -267,6 +268,7 @@ public class PantallaCatalago extends javax.swing.JFrame {
             }
         });
 
+        jRadioButton3.setBackground(new java.awt.Color(255, 255, 255));
         grupoCategorias.add(jRadioButton3);
         jRadioButton3.setForeground(new java.awt.Color(0, 0, 0));
         jRadioButton3.setText("Abarrotes");
@@ -276,6 +278,7 @@ public class PantallaCatalago extends javax.swing.JFrame {
             }
         });
 
+        jRadioButton4.setBackground(new java.awt.Color(255, 255, 255));
         grupoCategorias.add(jRadioButton4);
         jRadioButton4.setForeground(new java.awt.Color(0, 0, 0));
         jRadioButton4.setText("Bebidas");
