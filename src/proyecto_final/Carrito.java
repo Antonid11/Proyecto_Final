@@ -22,7 +22,6 @@ public class Carrito {
 
     public void agregarProducto(Producto producto) {
         productos.add(producto);
-        total += producto.getPrecio();
     }
 
     public void eliminarProducto(int index) {
@@ -34,7 +33,6 @@ public class Carrito {
 
     public void vaciarCarrito() {
         productos.clear();
-        total = 0.0;
     }
 
     public int getCantidadProductos() {
@@ -55,6 +53,13 @@ public class Carrito {
 
     public void setTotal(double total) {
         this.total = total;
+    }
+
+    public double calcularTotal(int index) {
+        if (index >= productos.size()) {//caso base cuando lleguemos al final de la lista
+            return 0.0;
+        }
+        return productos.get(index).getPrecio() + calcularTotal(index + 1);//suma el precio del producto actual mas el total de los demas productos
     }
 
 }

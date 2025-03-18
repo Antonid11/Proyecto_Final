@@ -7,6 +7,7 @@ package proyecto_final;
 import java.util.ArrayList;
 
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -17,10 +18,10 @@ public class PantallaCatalago extends javax.swing.JFrame {
     private String nombre;
     private Catalogo catalogo;
     private Carrito carrito;
-    private ArrayList<Producto> Frutas_Verduras = new ArrayList<Producto>();
-    private ArrayList<Producto> Lacteos = new ArrayList<Producto>();
-    private ArrayList<Producto> Abarrotes = new ArrayList<Producto>();
-    private ArrayList<Producto> Bebidas = new ArrayList<Producto>();
+    private static ArrayList<Producto> Frutas_Verduras = new ArrayList<Producto>();
+    private static ArrayList<Producto> Lacteos = new ArrayList<Producto>();
+    private static ArrayList<Producto> Abarrotes = new ArrayList<Producto>();
+    private static ArrayList<Producto> Bebidas = new ArrayList<Producto>();
     private static Catalogo cat = new Catalogo();
 
     /**
@@ -28,21 +29,22 @@ public class PantallaCatalago extends javax.swing.JFrame {
      */
     public PantallaCatalago(String nombre) {
         initComponents();
-        inicializarArrayList();
+        inicializarArrayList();//inicializo los valores de los arrayList
         this.nombre = nombre;
         this.catalogo = new Catalogo();
         this.carrito = new Carrito();
-        setLocationRelativeTo(null);
+        setLocationRelativeTo(null);// centra la ventana en la pantalla
         setTitle("Supermercado en línea - Catálogo");
         jLabelBienvenida.setText("Bienvenido/a " + nombre + "! Selecciona tus Productos:");
+        contador();
 
     }
 
-    public void inicializarArrayList() {
-        Producto[][] Temporal = new Producto[4][5];
+    public static void inicializarArrayList() {
+        Producto[][] Temporal = new Producto[4][7];
         Temporal = cat.getProductos();
 
-        for (int i = 0; i < Temporal.length; i++) {
+        for (int i = 0; i < Temporal.length; i++) {//recorre la matriz de los productos y los agrega al arrayList correspondiente
             for (int j = 0; j < Temporal[i].length; j++) {
                 if (i == 0) {
                     Frutas_Verduras.add(Temporal[i][j]);
@@ -75,6 +77,8 @@ public class PantallaCatalago extends javax.swing.JFrame {
         jPanelCentralCarrito = new javax.swing.JPanel();
         JPanelProductosCarrito = new javax.swing.JScrollPane();
         JListProductosCarrito = new javax.swing.JList<>();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jPanelCentral = new javax.swing.JPanel();
         jPanelCategorias = new javax.swing.JPanel();
@@ -95,6 +99,7 @@ public class PantallaCatalago extends javax.swing.JFrame {
         jDialog1.setMinimumSize(new java.awt.Dimension(725, 372));
 
         jPanel2.setBackground(new java.awt.Color(204, 204, 255));
+        jPanel2.setMinimumSize(new java.awt.Dimension(0, 0));
 
         jPanelCarrito.setBackground(new java.awt.Color(102, 102, 255));
 
@@ -131,27 +136,40 @@ public class PantallaCatalago extends javax.swing.JFrame {
             jPanelCentralCarritoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelCentralCarritoLayout.createSequentialGroup()
                 .addGap(16, 16, 16)
-                .addComponent(JPanelProductosCarrito, javax.swing.GroupLayout.PREFERRED_SIZE, 645, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(17, Short.MAX_VALUE))
+                .addComponent(JPanelProductosCarrito, javax.swing.GroupLayout.PREFERRED_SIZE, 632, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(19, Short.MAX_VALUE))
         );
         jPanelCentralCarritoLayout.setVerticalGroup(
             jPanelCentralCarritoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelCentralCarritoLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addComponent(JPanelProductosCarrito, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addComponent(JPanelProductosCarrito, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(19, Short.MAX_VALUE))
         );
+
+        jButton1.setBackground(new java.awt.Color(204, 0, 0));
+        jButton1.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
+        jButton1.setText("Eliminar Producto");
+
+        jButton2.setBackground(new java.awt.Color(0, 153, 0));
+        jButton2.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
+        jButton2.setText("Realizar Compra");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(26, 26, 26)
+                .addGap(29, 29, 29)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanelCentralCarrito, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanelCarrito, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(21, 21, 21))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addComponent(jButton1)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton2))
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jPanelCarrito, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jPanelCentralCarrito, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap(29, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -160,7 +178,11 @@ public class PantallaCatalago extends javax.swing.JFrame {
                 .addComponent(jPanelCarrito, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jPanelCentralCarrito, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(jButton2))
+                .addContainerGap(9, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jDialog1Layout = new javax.swing.GroupLayout(jDialog1.getContentPane());
@@ -420,13 +442,50 @@ public class PantallaCatalago extends javax.swing.JFrame {
 
     private void VerCarritoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VerCarritoActionPerformed
         // TODO add your handling code here:
+        actualizarCarrito();//actualiza la lsita de los productos en el carrito
+        jDialog1.setLocationRelativeTo(null);//centra el dialogo
         jDialog1.setVisible(true);
+        jDialog1.setTitle("Supermercado en línea - Carrito");
     }//GEN-LAST:event_VerCarritoActionPerformed
 
     private void AgregarAlCarritoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgregarAlCarritoActionPerformed
         // TODO add your handling code here:
+        int index = JListProductos.getSelectedIndex();//obtiene el indice seleccionado
+        Producto productoSelec = new Producto();
+        
+        if (jRadioButton1.isSelected()) {//determina el producto segun la categoria
+            productoSelec = Frutas_Verduras.get(index);
+        } else if (jRadioButton2.isSelected()) {
+            productoSelec = Lacteos.get(index);
+        } else if (jRadioButton3.isSelected()) {
+            productoSelec = Abarrotes.get(index);
+        } else if (jRadioButton4.isSelected()) {
+            productoSelec = Bebidas.get(index);
+        }
+        if (productoSelec != null) {//si se selecciona un producto valido se agrega al carrito
+            carrito.agregarProducto(productoSelec);
+            actualizarCarrito();
+            contador();
+            JOptionPane.showMessageDialog(this, "Producto agregado: " + productoSelec.getNombre());
+        }
     }//GEN-LAST:event_AgregarAlCarritoActionPerformed
 
+    public void actualizarCarrito() {
+        DefaultListModel modeloCarrito = new DefaultListModel();
+        ArrayList<Producto> productosEnCarrito = carrito.getProductos();
+
+        for (int i = 0; i < productosEnCarrito.size(); i++) {
+            Producto prod = productosEnCarrito.get(i);
+            modeloCarrito.addElement(prod.getNombre() + " -$" + prod.getPrecio());
+        }
+        JListProductosCarrito.setModel(modeloCarrito);
+        double totalCarrito = carrito.calcularTotal(0);
+        jLabelCarrito.setText("Carrito - Total: $" + totalCarrito);
+    }
+
+    public void contador(){
+        jLabel1.setText("Productos: "+ carrito.getCantidadProductos());
+    }
     private void jRadioButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton3ActionPerformed
         // TODO add your handling code here:
         if (jRadioButton3.isSelected()) {
@@ -493,6 +552,8 @@ public class PantallaCatalago extends javax.swing.JFrame {
     private javax.swing.JScrollPane JPanelProductosCarrito;
     private javax.swing.JButton VerCarrito;
     private javax.swing.ButtonGroup grupoCategorias;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JDialog jDialog1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabelBienvenida;

@@ -8,7 +8,7 @@ public class Catalogo {
 
     private Producto[][] productos;
     private int Categorias = 4;
-    private int Productos_Categoria = 5;
+    private int Productos_Categoria = 7;
 
     public Catalogo() {
         productos = new Producto[Categorias][Productos_Categoria];
@@ -21,24 +21,32 @@ public class Catalogo {
         productos[0][2] = new Producto("Zanahoria", 15.00, "Frutas y Verduras", 80);
         productos[0][3] = new Producto("Lechuga", 18.50, "Frutas y Verduras", 60);
         productos[0][4] = new Producto("Tomate", 22.00, "Frutas y Verduras", 90);
+        productos[0][5] = new Producto("Pera", 10.23, "Frutas y Verduras", 100);
+        productos[0][6] = new Producto("Brócoli", 17.12, "Frutas y Verduras", 140);
 
         productos[1][0] = new Producto("Leche", 25.00, "Lácteos", 120);
         productos[1][1] = new Producto("Queso", 45.00, "Lácteos", 70);
         productos[1][2] = new Producto("Yogurt", 18.00, "Lácteos", 90);
         productos[1][3] = new Producto("Mantequilla", 32.00, "Lácteos", 50);
         productos[1][4] = new Producto("Crema", 28.00, "Lácteos", 60);
+        productos[1][5] = new Producto("Margarina", 50.00, "Lácteos", 70);
+        productos[1][6] = new Producto("Quesillo", 25.00, "Lácteos", 80);
 
         productos[2][0] = new Producto("Arroz", 35.00, "Abarrotes", 200);
         productos[2][1] = new Producto("Frijol", 32.00, "Abarrotes", 180);
         productos[2][2] = new Producto("Aceite", 45.00, "Abarrotes", 100);
         productos[2][3] = new Producto("Azúcar", 28.00, "Abarrotes", 150);
         productos[2][4] = new Producto("Sal", 15.00, "Abarrotes", 200);
+        productos[2][5] = new Producto("Pimienta", 20.00, "Abarrotes", 180);
+        productos[2][6] = new Producto("Comino", 10.00, "Abarrotes", 100);
 
         productos[3][0] = new Producto("Agua", 15.00, "Bebidas", 300);
         productos[3][1] = new Producto("Refresco", 22.00, "Bebidas", 250);
         productos[3][2] = new Producto("Jugo", 18.00, "Bebidas", 180);
         productos[3][3] = new Producto("Cerveza", 28.00, "Bebidas", 120);
         productos[3][4] = new Producto("Café", 65.00, "Bebidas", 90);
+        productos[3][5] = new Producto("Malteadas", 80.00, "Bebidas", 85);
+        productos[3][6] = new Producto("Té", 70.00, "Bebidas", 80);
     }
 
     public Producto[][] getProductos() {

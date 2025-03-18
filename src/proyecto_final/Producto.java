@@ -19,20 +19,16 @@ public class Producto {
     private String categoria;
     private int stock;
 
+    public Producto() {
+    }
+    
+
     public Producto(String nombre, double precio, String categoria, int stock) {
-        this.id = ran.nextInt(100, 1000);
+        this.id = ran.nextInt(100, 1000);//genera un ID aleatorio de 3 digitos
         this.nombre = nombre;
         this.precio = precio;
         this.categoria = categoria;
         this.stock = stock;
-    }
-
-    public Random getRan() {
-        return ran;
-    }
-
-    public void setRan(Random ran) {
-        this.ran = ran;
     }
 
     public int getId() {
@@ -77,7 +73,7 @@ public class Producto {
 
     @Override
     public String toString() {
-        return nombre + " - $" + precio;
+        return id+"-"+nombre + " - $" + precio;
     }
 
 }
