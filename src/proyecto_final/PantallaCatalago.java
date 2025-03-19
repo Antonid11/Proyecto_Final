@@ -77,8 +77,18 @@ public class PantallaCatalago extends javax.swing.JFrame {
         jPanelCentralCarrito = new javax.swing.JPanel();
         JPanelProductosCarrito = new javax.swing.JScrollPane();
         JListProductosCarrito = new javax.swing.JList<>();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        JButtonEliminarProducto = new javax.swing.JButton();
+        jButtonRealizarCompra = new javax.swing.JButton();
+        jButtonVaciarCarrito = new javax.swing.JButton();
+        jDialog2 = new javax.swing.JDialog();
+        jPanelRealizarCompra = new javax.swing.JPanel();
+        jPanel3 = new javax.swing.JPanel();
+        jLabelRealizarCompra = new javax.swing.JLabel();
+        jPanelCentralRealizarCompra = new javax.swing.JPanel();
+        JPanelinformacionCompra = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
+        jButtonConfirmarCompra = new javax.swing.JButton();
+        jButtonCancelarCompra = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jPanelCentral = new javax.swing.JPanel();
         jPanelCategorias = new javax.swing.JPanel();
@@ -112,7 +122,7 @@ public class PantallaCatalago extends javax.swing.JFrame {
         jPanelCarritoLayout.setHorizontalGroup(
             jPanelCarritoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelCarritoLayout.createSequentialGroup()
-                .addGap(295, 295, 295)
+                .addGap(259, 259, 259)
                 .addComponent(jLabelCarrito)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -147,13 +157,35 @@ public class PantallaCatalago extends javax.swing.JFrame {
                 .addContainerGap(19, Short.MAX_VALUE))
         );
 
-        jButton1.setBackground(new java.awt.Color(204, 0, 0));
-        jButton1.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
-        jButton1.setText("Eliminar Producto");
+        JButtonEliminarProducto.setBackground(new java.awt.Color(204, 0, 0));
+        JButtonEliminarProducto.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
+        JButtonEliminarProducto.setForeground(new java.awt.Color(255, 255, 255));
+        JButtonEliminarProducto.setText("Eliminar Producto");
+        JButtonEliminarProducto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JButtonEliminarProductoActionPerformed(evt);
+            }
+        });
 
-        jButton2.setBackground(new java.awt.Color(0, 153, 0));
-        jButton2.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
-        jButton2.setText("Realizar Compra");
+        jButtonRealizarCompra.setBackground(new java.awt.Color(0, 153, 0));
+        jButtonRealizarCompra.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
+        jButtonRealizarCompra.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonRealizarCompra.setText("Realizar Compra");
+        jButtonRealizarCompra.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonRealizarCompraActionPerformed(evt);
+            }
+        });
+
+        jButtonVaciarCarrito.setBackground(new java.awt.Color(102, 102, 255));
+        jButtonVaciarCarrito.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
+        jButtonVaciarCarrito.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonVaciarCarrito.setText("Vaciar Carrito");
+        jButtonVaciarCarrito.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonVaciarCarritoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -161,14 +193,15 @@ public class PantallaCatalago extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(29, 29, 29)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addComponent(jButton1)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jButtonVaciarCarrito)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(JButtonEliminarProducto)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton2))
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jPanelCarrito, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jPanelCentralCarrito, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(jButtonRealizarCompra))
+                    .addComponent(jPanelCarrito, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanelCentralCarrito, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(29, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -180,8 +213,9 @@ public class PantallaCatalago extends javax.swing.JFrame {
                 .addComponent(jPanelCentralCarrito, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(JButtonEliminarProducto)
+                    .addComponent(jButtonRealizarCompra)
+                    .addComponent(jButtonVaciarCarrito))
                 .addContainerGap(9, Short.MAX_VALUE))
         );
 
@@ -194,6 +228,109 @@ public class PantallaCatalago extends javax.swing.JFrame {
         jDialog1Layout.setVerticalGroup(
             jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        jDialog2.setPreferredSize(new java.awt.Dimension(735, 372));
+
+        jPanelRealizarCompra.setBackground(new java.awt.Color(204, 204, 255));
+
+        jPanel3.setBackground(new java.awt.Color(102, 102, 255));
+
+        jLabelRealizarCompra.setFont(new java.awt.Font("Segoe UI Black", 0, 16)); // NOI18N
+        jLabelRealizarCompra.setForeground(new java.awt.Color(255, 255, 255));
+        jLabelRealizarCompra.setText("Confirmar Compra");
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(259, 259, 259)
+                .addComponent(jLabelRealizarCompra)
+                .addContainerGap(273, Short.MAX_VALUE))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabelRealizarCompra, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
+        );
+
+        jPanelCentralRealizarCompra.setBackground(new java.awt.Color(255, 255, 255));
+
+        JPanelinformacionCompra.setBackground(new java.awt.Color(255, 255, 255));
+        JPanelinformacionCompra.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 255)));
+
+        jTextArea1.setBackground(new java.awt.Color(255, 255, 255));
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        JPanelinformacionCompra.setViewportView(jTextArea1);
+
+        javax.swing.GroupLayout jPanelCentralRealizarCompraLayout = new javax.swing.GroupLayout(jPanelCentralRealizarCompra);
+        jPanelCentralRealizarCompra.setLayout(jPanelCentralRealizarCompraLayout);
+        jPanelCentralRealizarCompraLayout.setHorizontalGroup(
+            jPanelCentralRealizarCompraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelCentralRealizarCompraLayout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addComponent(JPanelinformacionCompra, javax.swing.GroupLayout.PREFERRED_SIZE, 627, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanelCentralRealizarCompraLayout.setVerticalGroup(
+            jPanelCentralRealizarCompraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelCentralRealizarCompraLayout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addComponent(JPanelinformacionCompra, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(22, Short.MAX_VALUE))
+        );
+
+        jButtonConfirmarCompra.setBackground(new java.awt.Color(0, 153, 0));
+        jButtonConfirmarCompra.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
+        jButtonConfirmarCompra.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonConfirmarCompra.setText("Confrimar");
+
+        jButtonCancelarCompra.setBackground(new java.awt.Color(204, 0, 0));
+        jButtonCancelarCompra.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
+        jButtonCancelarCompra.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonCancelarCompra.setText("Cancelar");
+
+        javax.swing.GroupLayout jPanelRealizarCompraLayout = new javax.swing.GroupLayout(jPanelRealizarCompra);
+        jPanelRealizarCompra.setLayout(jPanelRealizarCompraLayout);
+        jPanelRealizarCompraLayout.setHorizontalGroup(
+            jPanelRealizarCompraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelRealizarCompraLayout.createSequentialGroup()
+                .addGroup(jPanelRealizarCompraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanelRealizarCompraLayout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButtonCancelarCompra)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButtonConfirmarCompra))
+                    .addGroup(jPanelRealizarCompraLayout.createSequentialGroup()
+                        .addGap(29, 29, 29)
+                        .addGroup(jPanelRealizarCompraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jPanelCentralRealizarCompra, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addGap(29, 29, 29))
+        );
+        jPanelRealizarCompraLayout.setVerticalGroup(
+            jPanelRealizarCompraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelRealizarCompraLayout.createSequentialGroup()
+                .addGap(24, 24, 24)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jPanelCentralRealizarCompra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanelRealizarCompraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButtonCancelarCompra)
+                    .addComponent(jButtonConfirmarCompra, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)))
+        );
+
+        javax.swing.GroupLayout jDialog2Layout = new javax.swing.GroupLayout(jDialog2.getContentPane());
+        jDialog2.getContentPane().setLayout(jDialog2Layout);
+        jDialog2Layout.setHorizontalGroup(
+            jDialog2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanelRealizarCompra, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        jDialog2Layout.setVerticalGroup(
+            jDialog2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanelRealizarCompra, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -444,15 +581,20 @@ public class PantallaCatalago extends javax.swing.JFrame {
         // TODO add your handling code here:
         actualizarCarrito();//actualiza la lsita de los productos en el carrito
         jDialog1.setLocationRelativeTo(null);//centra el dialogo
+        jDialog1.pack();//estira la pantalla automaticamente
         jDialog1.setVisible(true);
         jDialog1.setTitle("Supermercado en línea - Carrito");
     }//GEN-LAST:event_VerCarritoActionPerformed
 
     private void AgregarAlCarritoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgregarAlCarritoActionPerformed
         // TODO add your handling code here:
+        if (JListProductos.getSelectedIndex() == -1) {
+            // No se ha seleccionado ningún producto
+            JOptionPane.showMessageDialog(this, "Por favor, selecciona un producto antes de agregar al carrito", "Error", JOptionPane.ERROR_MESSAGE);
+            return; // Salir del método sin hacer nada más
+        }
         int index = JListProductos.getSelectedIndex();//obtiene el indice seleccionado
         Producto productoSelec = new Producto();
-        
         if (jRadioButton1.isSelected()) {//determina el producto segun la categoria
             productoSelec = Frutas_Verduras.get(index);
         } else if (jRadioButton2.isSelected()) {
@@ -462,7 +604,7 @@ public class PantallaCatalago extends javax.swing.JFrame {
         } else if (jRadioButton4.isSelected()) {
             productoSelec = Bebidas.get(index);
         }
-        if (productoSelec != null) {//si se selecciona un producto valido se agrega al carrito
+        if (productoSelec != null) {//si se selecciona un producto se agrega al carrito
             carrito.agregarProducto(productoSelec);
             actualizarCarrito();
             contador();
@@ -476,15 +618,15 @@ public class PantallaCatalago extends javax.swing.JFrame {
 
         for (int i = 0; i < productosEnCarrito.size(); i++) {
             Producto prod = productosEnCarrito.get(i);
-            modeloCarrito.addElement(prod.getNombre() + " -$" + prod.getPrecio());
+            modeloCarrito.addElement((i + 1) + ". " + prod.getNombre() + " -$" + prod.getPrecio());
         }
         JListProductosCarrito.setModel(modeloCarrito);
-        double totalCarrito = carrito.calcularTotal(0);
-        jLabelCarrito.setText("Carrito - Total: $" + totalCarrito);
+        double totalCarrito = carrito.calcularSubTotal(0);
+        jLabelCarrito.setText("Carrito - Subtotal: $" + totalCarrito);
     }
 
-    public void contador(){
-        jLabel1.setText("Productos: "+ carrito.getCantidadProductos());
+    public void contador() {
+        jLabel1.setText("Productos: " + carrito.getCantidadProductos());
     }
     private void jRadioButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton3ActionPerformed
         // TODO add your handling code here:
@@ -508,6 +650,35 @@ public class PantallaCatalago extends javax.swing.JFrame {
             JListProductos.setModel(ModeloLista);
         }
     }//GEN-LAST:event_jRadioButton4ActionPerformed
+
+    private void JButtonEliminarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JButtonEliminarProductoActionPerformed
+        // TODO add your handling code here:
+        int index = JListProductosCarrito.getSelectedIndex();
+        if (index != -1) {
+            Producto productoSelec = carrito.getProductos().get(index);
+            carrito.eliminarProducto(index);
+            actualizarCarrito();
+            contador();
+
+            JOptionPane.showMessageDialog(this, "Producto Eliminado: " + productoSelec);
+        } else {
+            JOptionPane.showMessageDialog(this, "Por favor seleccione un producto antes de eliminar");
+        }
+
+    }//GEN-LAST:event_JButtonEliminarProductoActionPerformed
+
+    private void jButtonRealizarCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRealizarCompraActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonRealizarCompraActionPerformed
+
+    private void jButtonVaciarCarritoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVaciarCarritoActionPerformed
+        // TODO add your handling code here:
+        carrito.vaciarCarrito();
+        actualizarCarrito();
+        contador();
+        JOptionPane.showMessageDialog(this, "El carrito se ha vaciado correctamente");
+
+    }//GEN-LAST:event_jButtonVaciarCarritoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -546,30 +717,40 @@ public class PantallaCatalago extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AgregarAlCarrito;
+    private javax.swing.JButton JButtonEliminarProducto;
     private javax.swing.JList<String> JListProductos;
     private javax.swing.JList<String> JListProductosCarrito;
     private javax.swing.JScrollPane JPanelProductos;
     private javax.swing.JScrollPane JPanelProductosCarrito;
+    private javax.swing.JScrollPane JPanelinformacionCompra;
     private javax.swing.JButton VerCarrito;
     private javax.swing.ButtonGroup grupoCategorias;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButtonCancelarCompra;
+    private javax.swing.JButton jButtonConfirmarCompra;
+    private javax.swing.JButton jButtonRealizarCompra;
+    private javax.swing.JButton jButtonVaciarCarrito;
     private javax.swing.JDialog jDialog1;
+    private javax.swing.JDialog jDialog2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabelBienvenida;
     private javax.swing.JLabel jLabelCarrito;
     private javax.swing.JLabel jLabelCategorias;
+    private javax.swing.JLabel jLabelRealizarCompra;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanelBienvenida;
     private javax.swing.JPanel jPanelButtons;
     private javax.swing.JPanel jPanelCarrito;
     private javax.swing.JPanel jPanelCategorias;
     private javax.swing.JPanel jPanelCentral;
     private javax.swing.JPanel jPanelCentralCarrito;
+    private javax.swing.JPanel jPanelCentralRealizarCompra;
+    private javax.swing.JPanel jPanelRealizarCompra;
     private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JRadioButton jRadioButton3;
     private javax.swing.JRadioButton jRadioButton4;
+    private javax.swing.JTextArea jTextArea1;
     // End of variables declaration//GEN-END:variables
 }
