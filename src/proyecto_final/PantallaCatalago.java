@@ -4,6 +4,7 @@
  */
 package proyecto_final;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 import javax.swing.DefaultListModel;
@@ -86,16 +87,23 @@ public class PantallaCatalago extends javax.swing.JFrame {
         jLabelRealizarCompra = new javax.swing.JLabel();
         jPanelCentralRealizarCompra = new javax.swing.JPanel();
         JPanelinformacionCompra = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        jTextAreaInfo = new javax.swing.JTextArea();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTextAreaTarjeta = new javax.swing.JTextArea();
+        jLabel4 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTextAreaDireccion = new javax.swing.JTextArea();
         jButtonConfirmarCompra = new javax.swing.JButton();
         jButtonCancelarCompra = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jPanelCentral = new javax.swing.JPanel();
         jPanelCategorias = new javax.swing.JPanel();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
-        jRadioButton3 = new javax.swing.JRadioButton();
-        jRadioButton4 = new javax.swing.JRadioButton();
+        jRadioButtonFrutas_Verduras = new javax.swing.JRadioButton();
+        jRadioButtonLacteos = new javax.swing.JRadioButton();
+        jRadioButtonAbarrotes = new javax.swing.JRadioButton();
+        jRadioButtonBebidas = new javax.swing.JRadioButton();
         jLabelCategorias = new javax.swing.JLabel();
         JPanelProductos = new javax.swing.JScrollPane();
         JListProductos = new javax.swing.JList<>();
@@ -216,7 +224,7 @@ public class PantallaCatalago extends javax.swing.JFrame {
                     .addComponent(JButtonEliminarProducto)
                     .addComponent(jButtonRealizarCompra)
                     .addComponent(jButtonVaciarCarrito))
-                .addContainerGap(9, Short.MAX_VALUE))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jDialog1Layout = new javax.swing.GroupLayout(jDialog1.getContentPane());
@@ -230,9 +238,8 @@ public class PantallaCatalago extends javax.swing.JFrame {
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        jDialog2.setPreferredSize(new java.awt.Dimension(735, 372));
-
         jPanelRealizarCompra.setBackground(new java.awt.Color(204, 204, 255));
+        jPanelRealizarCompra.setPreferredSize(new java.awt.Dimension(725, 372));
 
         jPanel3.setBackground(new java.awt.Color(102, 102, 255));
 
@@ -247,7 +254,7 @@ public class PantallaCatalago extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(259, 259, 259)
                 .addComponent(jLabelRealizarCompra)
-                .addContainerGap(273, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -257,39 +264,107 @@ public class PantallaCatalago extends javax.swing.JFrame {
         jPanelCentralRealizarCompra.setBackground(new java.awt.Color(255, 255, 255));
 
         JPanelinformacionCompra.setBackground(new java.awt.Color(255, 255, 255));
-        JPanelinformacionCompra.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 255)));
+        JPanelinformacionCompra.setBorder(null);
 
-        jTextArea1.setBackground(new java.awt.Color(255, 255, 255));
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        JPanelinformacionCompra.setViewportView(jTextArea1);
+        jTextAreaInfo.setEditable(false);
+        jTextAreaInfo.setBackground(new java.awt.Color(255, 255, 255));
+        jTextAreaInfo.setColumns(10);
+        jTextAreaInfo.setForeground(new java.awt.Color(0, 0, 0));
+        jTextAreaInfo.setRows(5);
+        jTextAreaInfo.setText("Cantidad de productos: \n\nSubtotal: $\n\nIVA: $\n\nTotal a pagar: $\n\nMetodo de pago\n");
+        JPanelinformacionCompra.setViewportView(jTextAreaInfo);
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI Black", 0, 13)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel2.setText("Resumen de Pedido:");
+
+        jLabel3.setBackground(new java.awt.Color(153, 153, 255));
+        jLabel3.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(153, 153, 255));
+        jLabel3.setText("-----------------------------------------------------------------------------------------------------------------------------");
+
+        jTextAreaTarjeta.setEditable(false);
+        jTextAreaTarjeta.setBackground(new java.awt.Color(220, 220, 220));
+        jTextAreaTarjeta.setColumns(15);
+        jTextAreaTarjeta.setForeground(new java.awt.Color(0, 0, 0));
+        jTextAreaTarjeta.setRows(1);
+        jTextAreaTarjeta.setTabSize(1);
+        jTextAreaTarjeta.setText("Terminacion de Tarjeta: ");
+        jTextAreaTarjeta.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 255)));
+        jScrollPane1.setViewportView(jTextAreaTarjeta);
+
+        jLabel4.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel4.setFont(new java.awt.Font("Segoe UI Black", 0, 13)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel4.setText("Direccion de envio:");
+
+        jTextAreaDireccion.setEditable(false);
+        jTextAreaDireccion.setBackground(new java.awt.Color(220, 220, 220));
+        jTextAreaDireccion.setColumns(20);
+        jTextAreaDireccion.setForeground(new java.awt.Color(0, 0, 0));
+        jTextAreaDireccion.setRows(3);
+        jTextAreaDireccion.setText(" Calle Principal #\n Colonia: \n Cuidad: \n Fecha: ");
+        jTextAreaDireccion.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 255)));
+        jScrollPane2.setViewportView(jTextAreaDireccion);
 
         javax.swing.GroupLayout jPanelCentralRealizarCompraLayout = new javax.swing.GroupLayout(jPanelCentralRealizarCompra);
         jPanelCentralRealizarCompra.setLayout(jPanelCentralRealizarCompraLayout);
         jPanelCentralRealizarCompraLayout.setHorizontalGroup(
             jPanelCentralRealizarCompraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelCentralRealizarCompraLayout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addComponent(JPanelinformacionCompra, javax.swing.GroupLayout.PREFERRED_SIZE, 627, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanelCentralRealizarCompraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanelCentralRealizarCompraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel2)
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 629, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanelCentralRealizarCompraLayout.createSequentialGroup()
+                        .addGroup(jPanelCentralRealizarCompraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(JPanelinformacionCompra, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(192, 192, 192)
+                        .addGroup(jPanelCentralRealizarCompraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4))))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
         jPanelCentralRealizarCompraLayout.setVerticalGroup(
             jPanelCentralRealizarCompraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelCentralRealizarCompraLayout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addComponent(JPanelinformacionCompra, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(22, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelCentralRealizarCompraLayout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelCentralRealizarCompraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelCentralRealizarCompraLayout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(JPanelinformacionCompra, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(15, 15, 15))
         );
 
         jButtonConfirmarCompra.setBackground(new java.awt.Color(0, 153, 0));
         jButtonConfirmarCompra.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
         jButtonConfirmarCompra.setForeground(new java.awt.Color(255, 255, 255));
         jButtonConfirmarCompra.setText("Confrimar");
+        jButtonConfirmarCompra.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonConfirmarCompraActionPerformed(evt);
+            }
+        });
 
         jButtonCancelarCompra.setBackground(new java.awt.Color(204, 0, 0));
         jButtonCancelarCompra.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
         jButtonCancelarCompra.setForeground(new java.awt.Color(255, 255, 255));
         jButtonCancelarCompra.setText("Cancelar");
+        jButtonCancelarCompra.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCancelarCompraActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanelRealizarCompraLayout = new javax.swing.GroupLayout(jPanelRealizarCompra);
         jPanelRealizarCompra.setLayout(jPanelRealizarCompraLayout);
@@ -312,14 +387,15 @@ public class PantallaCatalago extends javax.swing.JFrame {
         jPanelRealizarCompraLayout.setVerticalGroup(
             jPanelRealizarCompraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelRealizarCompraLayout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(12, 12, 12)
                 .addComponent(jPanelCentralRealizarCompra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanelRealizarCompraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButtonCancelarCompra)
-                    .addComponent(jButtonConfirmarCompra, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jButtonConfirmarCompra, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonCancelarCompra))
+                .addGap(8, 8, 8))
         );
 
         javax.swing.GroupLayout jDialog2Layout = new javax.swing.GroupLayout(jDialog2.getContentPane());
@@ -330,7 +406,7 @@ public class PantallaCatalago extends javax.swing.JFrame {
         );
         jDialog2Layout.setVerticalGroup(
             jDialog2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanelRealizarCompra, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanelRealizarCompra, javax.swing.GroupLayout.DEFAULT_SIZE, 382, Short.MAX_VALUE)
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -342,44 +418,44 @@ public class PantallaCatalago extends javax.swing.JFrame {
         jPanelCategorias.setBackground(new java.awt.Color(255, 255, 255));
         jPanelCategorias.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 255)));
 
-        jRadioButton1.setBackground(new java.awt.Color(255, 255, 255));
-        grupoCategorias.add(jRadioButton1);
-        jRadioButton1.setForeground(new java.awt.Color(0, 0, 0));
-        jRadioButton1.setText("Frutas y Verduras");
-        jRadioButton1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
+        jRadioButtonFrutas_Verduras.setBackground(new java.awt.Color(255, 255, 255));
+        grupoCategorias.add(jRadioButtonFrutas_Verduras);
+        jRadioButtonFrutas_Verduras.setForeground(new java.awt.Color(0, 0, 0));
+        jRadioButtonFrutas_Verduras.setText("Frutas y Verduras");
+        jRadioButtonFrutas_Verduras.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jRadioButtonFrutas_Verduras.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton1ActionPerformed(evt);
+                jRadioButtonFrutas_VerdurasActionPerformed(evt);
             }
         });
 
-        jRadioButton2.setBackground(new java.awt.Color(255, 255, 255));
-        grupoCategorias.add(jRadioButton2);
-        jRadioButton2.setForeground(new java.awt.Color(0, 0, 0));
-        jRadioButton2.setText("Lacteos");
-        jRadioButton2.addActionListener(new java.awt.event.ActionListener() {
+        jRadioButtonLacteos.setBackground(new java.awt.Color(255, 255, 255));
+        grupoCategorias.add(jRadioButtonLacteos);
+        jRadioButtonLacteos.setForeground(new java.awt.Color(0, 0, 0));
+        jRadioButtonLacteos.setText("Lacteos");
+        jRadioButtonLacteos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton2ActionPerformed(evt);
+                jRadioButtonLacteosActionPerformed(evt);
             }
         });
 
-        jRadioButton3.setBackground(new java.awt.Color(255, 255, 255));
-        grupoCategorias.add(jRadioButton3);
-        jRadioButton3.setForeground(new java.awt.Color(0, 0, 0));
-        jRadioButton3.setText("Abarrotes");
-        jRadioButton3.addActionListener(new java.awt.event.ActionListener() {
+        jRadioButtonAbarrotes.setBackground(new java.awt.Color(255, 255, 255));
+        grupoCategorias.add(jRadioButtonAbarrotes);
+        jRadioButtonAbarrotes.setForeground(new java.awt.Color(0, 0, 0));
+        jRadioButtonAbarrotes.setText("Abarrotes");
+        jRadioButtonAbarrotes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton3ActionPerformed(evt);
+                jRadioButtonAbarrotesActionPerformed(evt);
             }
         });
 
-        jRadioButton4.setBackground(new java.awt.Color(255, 255, 255));
-        grupoCategorias.add(jRadioButton4);
-        jRadioButton4.setForeground(new java.awt.Color(0, 0, 0));
-        jRadioButton4.setText("Bebidas");
-        jRadioButton4.addActionListener(new java.awt.event.ActionListener() {
+        jRadioButtonBebidas.setBackground(new java.awt.Color(255, 255, 255));
+        grupoCategorias.add(jRadioButtonBebidas);
+        jRadioButtonBebidas.setForeground(new java.awt.Color(0, 0, 0));
+        jRadioButtonBebidas.setText("Bebidas");
+        jRadioButtonBebidas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton4ActionPerformed(evt);
+                jRadioButtonBebidasActionPerformed(evt);
             }
         });
 
@@ -394,13 +470,13 @@ public class PantallaCatalago extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabelCategorias, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 82, Short.MAX_VALUE)
-                .addComponent(jRadioButton1)
+                .addComponent(jRadioButtonFrutas_Verduras)
                 .addGap(35, 35, 35)
-                .addComponent(jRadioButton2)
+                .addComponent(jRadioButtonLacteos)
                 .addGap(44, 44, 44)
-                .addComponent(jRadioButton3)
+                .addComponent(jRadioButtonAbarrotes)
                 .addGap(49, 49, 49)
-                .addComponent(jRadioButton4)
+                .addComponent(jRadioButtonBebidas)
                 .addGap(19, 19, 19))
         );
         jPanelCategoriasLayout.setVerticalGroup(
@@ -408,10 +484,10 @@ public class PantallaCatalago extends javax.swing.JFrame {
             .addGroup(jPanelCategoriasLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanelCategoriasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jRadioButton1)
-                    .addComponent(jRadioButton2)
-                    .addComponent(jRadioButton3)
-                    .addComponent(jRadioButton4)
+                    .addComponent(jRadioButtonFrutas_Verduras)
+                    .addComponent(jRadioButtonLacteos)
+                    .addComponent(jRadioButtonAbarrotes)
+                    .addComponent(jRadioButtonBebidas)
                     .addComponent(jLabelCategorias))
                 .addContainerGap())
         );
@@ -440,8 +516,8 @@ public class PantallaCatalago extends javax.swing.JFrame {
                 .addGap(15, 15, 15)
                 .addComponent(jPanelCategorias, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(JPanelProductos, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addComponent(JPanelProductos, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(22, Short.MAX_VALUE))
         );
 
         jPanelBienvenida.setBackground(new java.awt.Color(102, 102, 255));
@@ -499,19 +575,18 @@ public class PantallaCatalago extends javax.swing.JFrame {
         jPanelButtonsLayout.setHorizontalGroup(
             jPanelButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelButtonsLayout.createSequentialGroup()
-                .addGap(65, 65, 65)
+                .addContainerGap(71, Short.MAX_VALUE)
                 .addComponent(VerCarrito)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(AgregarAlCarrito))
         );
         jPanelButtonsLayout.setVerticalGroup(
             jPanelButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelButtonsLayout.createSequentialGroup()
-                .addContainerGap()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelButtonsLayout.createSequentialGroup()
+                .addGap(0, 15, Short.MAX_VALUE)
                 .addGroup(jPanelButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(VerCarrito)
-                    .addComponent(AgregarAlCarrito))
-                .addContainerGap(9, Short.MAX_VALUE))
+                    .addComponent(AgregarAlCarrito)
+                    .addComponent(VerCarrito)))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -533,10 +608,10 @@ public class PantallaCatalago extends javax.swing.JFrame {
                 .addGap(17, 17, 17)
                 .addComponent(jPanelBienvenida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanelCentral, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jPanelCentral, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanelButtons, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(12, Short.MAX_VALUE))
+                .addContainerGap(17, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -553,8 +628,8 @@ public class PantallaCatalago extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
-        if (jRadioButton1.isSelected()) {
+    private void jRadioButtonFrutas_VerdurasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonFrutas_VerdurasActionPerformed
+        if (jRadioButtonFrutas_Verduras.isSelected()) {
             DefaultListModel ModeloLista = new DefaultListModel();
 
             for (int i = 0; i < Frutas_Verduras.size(); i++) {
@@ -564,18 +639,18 @@ public class PantallaCatalago extends javax.swing.JFrame {
             JListProductos.setModel(ModeloLista);
 
         }
-    }//GEN-LAST:event_jRadioButton1ActionPerformed
+    }//GEN-LAST:event_jRadioButtonFrutas_VerdurasActionPerformed
 
-    private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2ActionPerformed
+    private void jRadioButtonLacteosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonLacteosActionPerformed
         // TODO add your handling code here:
-        if (jRadioButton2.isShowing()) {
+        if (jRadioButtonLacteos.isShowing()) {
             DefaultListModel ModeloLista = new DefaultListModel();
             for (int i = 0; i < Lacteos.size(); i++) {
                 ModeloLista.addElement(Lacteos.get(i));
             }
             JListProductos.setModel(ModeloLista);
         }
-    }//GEN-LAST:event_jRadioButton2ActionPerformed
+    }//GEN-LAST:event_jRadioButtonLacteosActionPerformed
 
     private void VerCarritoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VerCarritoActionPerformed
         // TODO add your handling code here:
@@ -595,13 +670,13 @@ public class PantallaCatalago extends javax.swing.JFrame {
         }
         int index = JListProductos.getSelectedIndex();//obtiene el indice seleccionado
         Producto productoSelec = new Producto();
-        if (jRadioButton1.isSelected()) {//determina el producto segun la categoria
+        if (jRadioButtonFrutas_Verduras.isSelected()) {//determina el producto segun la categoria
             productoSelec = Frutas_Verduras.get(index);
-        } else if (jRadioButton2.isSelected()) {
+        } else if (jRadioButtonLacteos.isSelected()) {
             productoSelec = Lacteos.get(index);
-        } else if (jRadioButton3.isSelected()) {
+        } else if (jRadioButtonAbarrotes.isSelected()) {
             productoSelec = Abarrotes.get(index);
-        } else if (jRadioButton4.isSelected()) {
+        } else if (jRadioButtonBebidas.isSelected()) {
             productoSelec = Bebidas.get(index);
         }
         if (productoSelec != null) {//si se selecciona un producto se agrega al carrito
@@ -628,9 +703,9 @@ public class PantallaCatalago extends javax.swing.JFrame {
     public void contador() {
         jLabel1.setText("Productos: " + carrito.getCantidadProductos());
     }
-    private void jRadioButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton3ActionPerformed
+    private void jRadioButtonAbarrotesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonAbarrotesActionPerformed
         // TODO add your handling code here:
-        if (jRadioButton3.isSelected()) {
+        if (jRadioButtonAbarrotes.isSelected()) {
             DefaultListModel ModeloLista = new DefaultListModel();
             for (int i = 0; i < Abarrotes.size(); i++) {
                 ModeloLista.addElement(Abarrotes.get(i));
@@ -638,18 +713,18 @@ public class PantallaCatalago extends javax.swing.JFrame {
             }
             JListProductos.setModel(ModeloLista);
         }
-    }//GEN-LAST:event_jRadioButton3ActionPerformed
+    }//GEN-LAST:event_jRadioButtonAbarrotesActionPerformed
 
-    private void jRadioButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton4ActionPerformed
+    private void jRadioButtonBebidasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonBebidasActionPerformed
         // TODO add your handling code here:
-        if (jRadioButton4.isSelected()) {
+        if (jRadioButtonBebidas.isSelected()) {
             DefaultListModel ModeloLista = new DefaultListModel();
             for (int i = 0; i < Bebidas.size(); i++) {
                 ModeloLista.addElement(Bebidas.get(i));
             }
             JListProductos.setModel(ModeloLista);
         }
-    }//GEN-LAST:event_jRadioButton4ActionPerformed
+    }//GEN-LAST:event_jRadioButtonBebidasActionPerformed
 
     private void JButtonEliminarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JButtonEliminarProductoActionPerformed
         // TODO add your handling code here:
@@ -662,13 +737,48 @@ public class PantallaCatalago extends javax.swing.JFrame {
 
             JOptionPane.showMessageDialog(this, "Producto Eliminado: " + productoSelec);
         } else {
-            JOptionPane.showMessageDialog(this, "Por favor seleccione un producto antes de eliminar");
+            JOptionPane.showMessageDialog(this, "Por favor seleccione un producto antes de eliminar", "Error", JOptionPane.ERROR_MESSAGE);
         }
 
     }//GEN-LAST:event_JButtonEliminarProductoActionPerformed
 
     private void jButtonRealizarCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRealizarCompraActionPerformed
-        // TODO add your handling code here:
+        if (carrito.getCantidadProductos() <= 0) {
+            JOptionPane.showMessageDialog(this, "No se puede realizar la compra, el carrtio esta vacio", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        JOptionPane.showMessageDialog(this, "A continuación ingrese los datos solicitados");
+        String calle = JOptionPane.showInputDialog(this, "Ingrese la calle Principal: ");
+        String colonia = JOptionPane.showInputDialog(this, "Ingrese el nombre de su colonia: ");
+        String cuidad = JOptionPane.showInputDialog(this, "Ingrese el nombre de su cuidad: ");
+        String tarjeta;
+        boolean tarjetaValida = false;
+        do {
+            tarjetaValida = true;
+            tarjeta = JOptionPane.showInputDialog(this, "Ingrese el número de su tarjeta: ");
+            for (int i = 0; i < tarjeta.length(); i++) {
+                if (!Character.isDigit(tarjeta.charAt(i))) {
+                    tarjetaValida = false;
+                    JOptionPane.showMessageDialog(this, "Ingrese solo numeros");
+                    JOptionPane.showMessageDialog(this, "Por favor ingrese nuevamente su numero de tarjeta");
+                }
+            }
+        } while (!tarjetaValida);
+        String ultimosDigitos;
+        if (tarjeta.length() >= 4) {
+            ultimosDigitos = tarjeta.substring(tarjeta.length() - 4);
+        } else {
+            ultimosDigitos = tarjeta;
+        }
+        int anno = LocalDateTime.now().getYear();
+        int mes = LocalDateTime.now().getMonthValue();
+        int dia = LocalDateTime.now().getDayOfMonth();
+        jTextAreaInfo.setText("Cantidad de productos : " + carrito.getCantidadProductos() + "\n\nSubtotal : " + carrito.calcularSubTotal(0) + "$\n\nIVA: " + carrito.calcularIVA() + "$\n\nTotal a pagar: " + carrito.calcularTotalIVA() + "$\n\nMetodo de pago:");
+        jTextAreaDireccion.setText("Calle Principal: " + calle + "\nColonia: " + colonia + "\nCuidad: " + cuidad + "\n Fecha de compra: " + dia + " / " + mes + " / " + anno);
+        jTextAreaTarjeta.setText("Terminación de Tarjeta: " + ultimosDigitos);
+        jDialog2.pack();
+        jDialog2.setLocationRelativeTo(null);
+        jDialog2.setVisible(true);
     }//GEN-LAST:event_jButtonRealizarCompraActionPerformed
 
     private void jButtonVaciarCarritoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVaciarCarritoActionPerformed
@@ -679,6 +789,28 @@ public class PantallaCatalago extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(this, "El carrito se ha vaciado correctamente");
 
     }//GEN-LAST:event_jButtonVaciarCarritoActionPerformed
+
+    private void jButtonCancelarCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarCompraActionPerformed
+        // TODO add your handling code here:
+        String resp = JOptionPane.showInputDialog(this, "¿Cancelar compra [s/n]? ");
+        if (resp.charAt(0) == 's' || resp.charAt(0) == 'S') {
+            jDialog2.setVisible(false);
+            JOptionPane.showMessageDialog(this, "La compra se ha cancelado correctamnete");
+        }
+    }//GEN-LAST:event_jButtonCancelarCompraActionPerformed
+
+    private void jButtonConfirmarCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConfirmarCompraActionPerformed
+        // TODO add your handling code here:
+        String resp = JOptionPane.showInputDialog(this, "¿Confirmar compra [s/n]? ");
+        if (resp.charAt(0) == 's' || resp.charAt(0) == 'S') {
+            JOptionPane.showMessageDialog(this, "La compra se ha realizado correctamnete");
+            jDialog2.setVisible(false);
+            jDialog1.setVisible(false);
+            carrito.vaciarCarrito();
+            actualizarCarrito();
+            contador();
+        }
+    }//GEN-LAST:event_jButtonConfirmarCompraActionPerformed
 
     /**
      * @param args the command line arguments
@@ -732,6 +864,9 @@ public class PantallaCatalago extends javax.swing.JFrame {
     private javax.swing.JDialog jDialog1;
     private javax.swing.JDialog jDialog2;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabelBienvenida;
     private javax.swing.JLabel jLabelCarrito;
     private javax.swing.JLabel jLabelCategorias;
@@ -747,10 +882,14 @@ public class PantallaCatalago extends javax.swing.JFrame {
     private javax.swing.JPanel jPanelCentralCarrito;
     private javax.swing.JPanel jPanelCentralRealizarCompra;
     private javax.swing.JPanel jPanelRealizarCompra;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
-    private javax.swing.JRadioButton jRadioButton3;
-    private javax.swing.JRadioButton jRadioButton4;
-    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JRadioButton jRadioButtonAbarrotes;
+    private javax.swing.JRadioButton jRadioButtonBebidas;
+    private javax.swing.JRadioButton jRadioButtonFrutas_Verduras;
+    private javax.swing.JRadioButton jRadioButtonLacteos;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTextArea jTextAreaDireccion;
+    private javax.swing.JTextArea jTextAreaInfo;
+    private javax.swing.JTextArea jTextAreaTarjeta;
     // End of variables declaration//GEN-END:variables
 }
