@@ -42,20 +42,31 @@ public class PantallaCatalago extends javax.swing.JFrame {
     }
 
     public static void inicializarArrayList() {
-        Producto[][] Temporal = new Producto[4][7];
-        Temporal = cat.getProductos();
+        // Obtener productos de cada categoría usando getProductosCategoria
+        Producto[] frutasVerduras = new Catalogo().getProductosCategoria(0);
+        Producto[] lacteos = new Catalogo().getProductosCategoria(1);
+        Producto[] abarrotes = new Catalogo().getProductosCategoria(2);
+        Producto[] bebidas = new Catalogo().getProductosCategoria(3);
 
-        for (int i = 0; i < Temporal.length; i++) {//recorre la matriz de los productos y los agrega al arrayList correspondiente
-            for (int j = 0; j < Temporal[i].length; j++) {
-                if (i == 0) {
-                    Frutas_Verduras.add(Temporal[i][j]);
-                } else if (i == 1) {
-                    Lacteos.add(Temporal[i][j]);
-                } else if (i == 2) {
-                    Abarrotes.add(Temporal[i][j]);
-                } else if (i == 3) {
-                    Bebidas.add(Temporal[i][j]);
-                }
+        // Llenar los ArrayList con los productos obtenidos
+        if (frutasVerduras != null) {
+            for (Producto producto : frutasVerduras) {
+                Frutas_Verduras.add(producto);
+            }
+        }
+        if (lacteos != null) {
+            for (Producto producto : lacteos) {
+                Lacteos.add(producto);
+            }
+        }
+        if (abarrotes != null) {
+            for (Producto producto : abarrotes) {
+                Abarrotes.add(producto);
+            }
+        }
+        if (bebidas != null) {
+            for (Producto producto : bebidas) {
+                Bebidas.add(producto);
             }
         }
 
@@ -303,7 +314,7 @@ public class PantallaCatalago extends javax.swing.JFrame {
         jTextAreaDireccion.setColumns(20);
         jTextAreaDireccion.setForeground(new java.awt.Color(0, 0, 0));
         jTextAreaDireccion.setRows(3);
-        jTextAreaDireccion.setText(" Calle Principal #\n Colonia: \n Cuidad: \n Fecha: ");
+        jTextAreaDireccion.setText(" Calle Principal:\n Colonia: \n Ciudad: \n Fecha: ");
         jTextAreaDireccion.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 255)));
         jScrollPane2.setViewportView(jTextAreaDireccion);
 
@@ -669,7 +680,7 @@ public class PantallaCatalago extends javax.swing.JFrame {
             return; // Salir del método sin hacer nada más
         }
         int index = JListProductos.getSelectedIndex();//obtiene el indice seleccionado
-        Producto productoSelec = new Producto();
+        Producto productoSelec = null;
         if (jRadioButtonFrutas_Verduras.isSelected()) {//determina el producto segun la categoria
             productoSelec = Frutas_Verduras.get(index);
         } else if (jRadioButtonLacteos.isSelected()) {
@@ -679,11 +690,13 @@ public class PantallaCatalago extends javax.swing.JFrame {
         } else if (jRadioButtonBebidas.isSelected()) {
             productoSelec = Bebidas.get(index);
         }
-        if (productoSelec != null) {//si se selecciona un producto se agrega al carrito
+        if (productoSelec != null) {//si se selecciona y si e un producto se agrega al carrito
             carrito.agregarProducto(productoSelec);
             actualizarCarrito();
             contador();
             JOptionPane.showMessageDialog(this, "Producto agregado: " + productoSelec.getNombre());
+        } else {
+            JOptionPane.showMessageDialog(this, "El producto no existe en el catálogo", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_AgregarAlCarritoActionPerformed
 
@@ -756,31 +769,39 @@ public class PantallaCatalago extends javax.swing.JFrame {
         do {
             tarjetaValida = true;
             tarjeta = JOptionPane.showInputDialog(this, "Ingrese el número de su tarjeta: ");
-            for (int i = 0; i < tarjeta.length(); i++) {
-                if (!Character.isDigit(tarjeta.charAt(i))) {
-                    tarjetaValida = false;
-                    JOptionPane.showMessageDialog(this, "Ingrese solo numeros");
-                    JOptionPane.showMessageDialog(this, "Por favor ingrese nuevamente su numero de tarjeta");
+            if (tarjeta.length() <= 16) {
+                for (int i = 0; i < tarjeta.length(); i++) {
+                    if (!Character.isDigit(tarjeta.charAt(i))) {
+                        tarjetaValida = false;
+                        JOptionPane.showMessageDialog(this, "Ingrese solo numeros");
+                        JOptionPane.showMessageDialog(this, "Por favor ingrese nuevamente su numero de tarjeta");
+                    }
                 }
+            } else {
+                JOptionPane.showMessageDialog(this, "Numero de Tarjeta invalida, debe contener minimo 16 digitos");
+                JOptionPane.showMessageDialog(this, "Por favor ingrese nuevamente su numero de tarjeta");
+                tarjetaValida = false;
             }
+
         } while (!tarjetaValida);
-        String ultimosDigitos;
-        if (tarjeta.length() >= 4) {
-            ultimosDigitos = tarjeta.substring(tarjeta.length() - 4);
-        } else {
-            ultimosDigitos = tarjeta;
-        }
+        char[] ultimosDigitos = ultimosDigitos(tarjeta);
         int anno = LocalDateTime.now().getYear();
         int mes = LocalDateTime.now().getMonthValue();
         int dia = LocalDateTime.now().getDayOfMonth();
         jTextAreaInfo.setText("Cantidad de productos : " + carrito.getCantidadProductos() + "\n\nSubtotal : " + carrito.calcularSubTotal(0) + "$\n\nIVA: " + carrito.calcularIVA() + "$\n\nTotal a pagar: " + carrito.calcularTotalIVA() + "$\n\nMetodo de pago:");
         jTextAreaDireccion.setText("Calle Principal: " + calle + "\nColonia: " + colonia + "\nCuidad: " + cuidad + "\n Fecha de compra: " + dia + " / " + mes + " / " + anno);
-        jTextAreaTarjeta.setText("Terminación de Tarjeta: " + ultimosDigitos);
+        jTextAreaTarjeta.setText("Terminación de Tarjeta: " + new String(ultimosDigitos));
         jDialog2.pack();
         jDialog2.setLocationRelativeTo(null);
         jDialog2.setVisible(true);
     }//GEN-LAST:event_jButtonRealizarCompraActionPerformed
 
+    public char[] ultimosDigitos(String tarjeta) {
+        if (tarjeta.isEmpty() || tarjeta.isBlank() || tarjeta.length() < 4) {
+            return new char[]{'0', '0', '0', '0'};
+        }
+        return tarjeta.substring(tarjeta.length() - 4).toCharArray();
+    }
     private void jButtonVaciarCarritoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVaciarCarritoActionPerformed
         // TODO add your handling code here:
         carrito.vaciarCarrito();
@@ -803,6 +824,11 @@ public class PantallaCatalago extends javax.swing.JFrame {
         // TODO add your handling code here:
         String resp = JOptionPane.showInputDialog(this, "¿Confirmar compra [s/n]? ");
         if (resp.charAt(0) == 's' || resp.charAt(0) == 'S') {
+            if (jTextAreaTarjeta.getText().equalsIgnoreCase("Terminación de Tarjeta: 0000")) {
+                JOptionPane.showMessageDialog(this, "La compra no se ha podido realizar porque la tarjeta es invalida");
+                return;
+
+            }
             JOptionPane.showMessageDialog(this, "La compra se ha realizado correctamnete");
             jDialog2.setVisible(false);
             jDialog1.setVisible(false);

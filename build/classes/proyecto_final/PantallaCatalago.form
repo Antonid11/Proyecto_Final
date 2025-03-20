@@ -505,7 +505,7 @@
                           <Color blue="0" green="0" red="0" type="rgb"/>
                         </Property>
                         <Property name="rows" type="int" value="3"/>
-                        <Property name="text" type="java.lang.String" value=" Calle Principal #&#xa; Colonia: &#xa; Cuidad: &#xa; Fecha: "/>
+                        <Property name="text" type="java.lang.String" value=" Calle Principal:&#xa; Colonia: &#xa; Ciudad: &#xa; Fecha: "/>
                         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                           <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
                             <LineBorder>

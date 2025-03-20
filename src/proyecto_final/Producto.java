@@ -4,15 +4,12 @@
  */
 package proyecto_final;
 
-import java.util.Random;
-
 /**
  *
  * @author mayel
  */
 public class Producto {
 
-    Random ran = new Random();
     private int id;
     private String nombre;
     private double precio;
@@ -21,10 +18,9 @@ public class Producto {
 
     public Producto() {
     }
-    
 
-    public Producto(String nombre, double precio, String categoria, int stock) {
-        this.id = ran.nextInt(100, 1000);//genera un ID aleatorio de 3 digitos
+    public Producto(int id, String nombre, double precio, String categoria, int stock) {
+        this.id = id;
         this.nombre = nombre;
         this.precio = precio;
         this.categoria = categoria;
@@ -73,7 +69,7 @@ public class Producto {
 
     @Override
     public String toString() {
-        return id+"-"+nombre + " - $" + precio;
+        return id + "-" + nombre + " - $" + precio;
     }
 
 }
