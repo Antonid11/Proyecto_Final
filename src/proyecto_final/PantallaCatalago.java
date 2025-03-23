@@ -753,7 +753,7 @@ public class PantallaCatalago extends javax.swing.JFrame {
             actualizarCarrito();
             contador();
 
-            JOptionPane.showMessageDialog(this, "Producto Eliminado: " + productoSelec);
+            JOptionPane.showMessageDialog(this, "Producto Eliminado: " + productoSelec.getNombre());
         } else {
             JOptionPane.showMessageDialog(this, "Por favor seleccione un producto antes de eliminar", "Error", JOptionPane.ERROR_MESSAGE);
         }
