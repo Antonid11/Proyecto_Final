@@ -785,20 +785,20 @@ public class PantallaCatalago extends javax.swing.JFrame {
         boolean tarjetaValida = false;
         do {
             tarjetaValida = true;
-            tarjeta = JOptionPane.showInputDialog(this, "Ingrese el número de su tarjeta: ");
+            tarjeta = JOptionPane.showInputDialog(this, "Ingrese el número de su tarjeta (minimo 16 caracteres): ");
             if (tarjeta == null) {
                 JOptionPane.showMessageDialog(this, "Sin esta informacion no se puede realizar la compra. Compra Cancelada.", "Advertencia", JOptionPane.WARNING_MESSAGE);
                 return;
             }
-            if (tarjeta.length() >= 16) {
-                for (int i = 0; i < tarjeta.length(); i++) {
-                    if (!Character.isDigit(tarjeta.charAt(i))) {
-                        tarjetaValida = false;
-                        JOptionPane.showMessageDialog(this, "Ingrese solo numeros");
-                        JOptionPane.showMessageDialog(this, "Por favor ingrese nuevamente su numero de tarjeta");
-                    }
+            for (int i = 0; i < tarjeta.length(); i++) {
+                if (!Character.isDigit(tarjeta.charAt(i))) {
+                    tarjetaValida = false;
+                    JOptionPane.showMessageDialog(this, "Ingrese solo numeros");
+                    JOptionPane.showMessageDialog(this, "Por favor ingrese nuevamente su numero de tarjeta");
+                    break;
                 }
-            } else {
+            }
+            if (tarjeta.length() < 16) {
                 JOptionPane.showMessageDialog(this, "Numero de Tarjeta invalida, debe contener minimo 16 digitos");
                 JOptionPane.showMessageDialog(this, "Por favor ingrese nuevamente su numero de tarjeta");
                 tarjetaValida = false;
@@ -822,9 +822,6 @@ public class PantallaCatalago extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonRealizarCompraActionPerformed
 
     public char[] ultimosDigitos(String tarjeta) {
-        if (tarjeta.isEmpty() || tarjeta.isBlank() || tarjeta.length() < 16) {
-            return new char[]{'0', '0', '0', '0'};
-        }
         return tarjeta.substring(tarjeta.length() - 4).toCharArray();
     }
     private void jButtonVaciarCarritoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVaciarCarritoActionPerformed
@@ -853,17 +850,8 @@ public class PantallaCatalago extends javax.swing.JFrame {
         // TODO add your handling code here:
         int confirmacion = JOptionPane.showConfirmDialog(this, "¿Estás seguro de que desea realizar la compra?", "Confirmar Realizar Compra", JOptionPane.YES_NO_OPTION);
         if (confirmacion == JOptionPane.YES_OPTION) {
-            if (jTextAreaTarjeta.getText().equalsIgnoreCase("Terminación de Tarjeta: 0000")) {
-                JOptionPane.showMessageDialog(this, "La compra no se ha podido realizar porque la tarjeta es invalida");
-                return;
-
-            }
             JOptionPane.showMessageDialog(this, "La compra se ha realizado correctamnete");
-            jDialog2.setVisible(false);
-            jDialog1.setVisible(false);
-            carrito.vaciarCarrito();
-            actualizarCarrito();
-            contador();
+            System.exit(0);
         }
     }//GEN-LAST:event_jButtonConfirmarCompraActionPerformed
 
