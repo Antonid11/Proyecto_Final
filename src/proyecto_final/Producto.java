@@ -69,7 +69,7 @@ public class Producto {
 
     @Override
     public String toString() {
-        return id + "-" + nombre + " - $" + precio;
+        return id + "-" + nombre + " - $" + precio + "  Stock: "+stock;
     }
 
 }

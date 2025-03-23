@@ -24,16 +24,22 @@ public class Carrito {
 
     public void agregarProducto(Producto producto) {
         productos.add(producto);
+        total += producto.getPrecio();
     }
 
     public void eliminarProducto(int index) {
         if (index >= 0 && index < productos.size()) {
-            total -= productos.get(index).getPrecio();
+            Producto productoEliminado = productos.get(index);
+            productoEliminado.setStock(productoEliminado.getStock() + 1); // Incrementar el stock
+            total -= productoEliminado.getPrecio();
             productos.remove(index);
         }
     }
 
     public void vaciarCarrito() {
+        for (Producto producto : productos) {
+            producto.setStock(producto.getStock() + 1); // Incrementar el stock de cada producto
+        }
         productos.clear();
         total = 0.0;
         iva = 0.0;

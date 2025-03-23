@@ -130,10 +130,10 @@ public class Catalogo {
                                 productos[i][j] = new Producto(id, "Café", 65.00, "Bebidas", 90);
                                 break;
                             case 5:
-                                productos[i][j] = new Producto(id, "Malteadas", 80.00, "Bebidas", 85);
+                                productos[i][j] = new Producto(id, "Malteadas", 40.00, "Bebidas", 85);
                                 break;
                             case 6:
-                                productos[i][j] = new Producto(id, "Té", 70.00, "Bebidas", 80);
+                                productos[i][j] = new Producto(id, "Té", 50.00, "Bebidas", 80);
                                 break;
                             default:
                                 break;

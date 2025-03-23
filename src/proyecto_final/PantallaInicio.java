@@ -142,9 +142,16 @@ public class PantallaInicio extends javax.swing.JFrame {
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
         String nombre = JOptionPane.showInputDialog(this, "Por favor ingresa tu nombre: ");
-        if (!nombre.isBlank() && !nombre.isEmpty()) {//solo si el nombre ingresado es valido muestra la siguiente pantalla
+        if (nombre != null) {//solo si el nombre ingresado es valido muestra la siguiente pantalla
+            if (nombre.isBlank() || nombre.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Debes ingresar un nombre para continuar", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
             PantallaCatalago catalogo = new PantallaCatalago(nombre);
             catalogo.setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(this, "No se ingresó un nombre. La aplicación se cerrará.", "Advertencia", JOptionPane.WARNING_MESSAGE);
+            System.exit(0); // Cierra la aplicación
         }
     }//GEN-LAST:event_jButton1MouseClicked
 

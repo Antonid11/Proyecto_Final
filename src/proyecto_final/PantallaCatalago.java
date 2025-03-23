@@ -680,7 +680,7 @@ public class PantallaCatalago extends javax.swing.JFrame {
             return; // Salir del método sin hacer nada más
         }
         int index = JListProductos.getSelectedIndex();//obtiene el indice seleccionado
-        Producto productoSelec = null;
+        Producto productoSelec = new Producto();
         if (jRadioButtonFrutas_Verduras.isSelected()) {//determina el producto segun la categoria
             productoSelec = Frutas_Verduras.get(index);
         } else if (jRadioButtonLacteos.isSelected()) {
@@ -690,11 +690,16 @@ public class PantallaCatalago extends javax.swing.JFrame {
         } else if (jRadioButtonBebidas.isSelected()) {
             productoSelec = Bebidas.get(index);
         }
-        if (productoSelec != null) {//si se selecciona y si e un producto se agrega al carrito
-            carrito.agregarProducto(productoSelec);
-            actualizarCarrito();
-            contador();
-            JOptionPane.showMessageDialog(this, "Producto agregado: " + productoSelec.getNombre());
+        if (productoSelec != null) {
+            if (productoSelec.getStock() > 0) {//si se selecciono u producto y si tiene stock se agrega al carrito
+                carrito.agregarProducto(productoSelec);
+                productoSelec.setStock(productoSelec.getStock() - 1); // Reducir el stock
+                actualizarCarrito();
+                contador();
+                JOptionPane.showMessageDialog(this, "Producto agregado: " + productoSelec.getNombre());
+            } else {
+                JOptionPane.showMessageDialog(this, "No hay suficiente stock para el producto: " + productoSelec.getNombre(), "Error", JOptionPane.ERROR_MESSAGE);
+            }
         } else {
             JOptionPane.showMessageDialog(this, "El producto no existe en el catálogo", "Error", JOptionPane.ERROR_MESSAGE);
         }
@@ -762,13 +767,29 @@ public class PantallaCatalago extends javax.swing.JFrame {
         }
         JOptionPane.showMessageDialog(this, "A continuación ingrese los datos solicitados");
         String calle = JOptionPane.showInputDialog(this, "Ingrese la calle Principal: ");
+        if (calle == null) {
+            JOptionPane.showMessageDialog(this, "Sin esta informacion no se puede realizar la compra. Compra Cancelada.", "Advertencia", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
         String colonia = JOptionPane.showInputDialog(this, "Ingrese el nombre de su colonia: ");
+        if (colonia == null) {
+            JOptionPane.showMessageDialog(this, "Sin esta informacion no se puede realizar la compra. Compra Cancelada.", "Advertencia", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
         String cuidad = JOptionPane.showInputDialog(this, "Ingrese el nombre de su cuidad: ");
+        if (cuidad == null) {
+            JOptionPane.showMessageDialog(this, "Sin esta informacion no se puede realizar la compra. Compra Cancelada.", "Advertencia", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
         String tarjeta;
         boolean tarjetaValida = false;
         do {
             tarjetaValida = true;
             tarjeta = JOptionPane.showInputDialog(this, "Ingrese el número de su tarjeta: ");
+            if (tarjeta == null) {
+                JOptionPane.showMessageDialog(this, "Sin esta informacion no se puede realizar la compra. Compra Cancelada.", "Advertencia", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
             if (tarjeta.length() <= 16) {
                 for (int i = 0; i < tarjeta.length(); i++) {
                     if (!Character.isDigit(tarjeta.charAt(i))) {
@@ -784,12 +805,16 @@ public class PantallaCatalago extends javax.swing.JFrame {
             }
 
         } while (!tarjetaValida);
+        if (calle.isBlank() || calle.isEmpty() || colonia.isBlank() || colonia.isEmpty() || cuidad.isBlank() || cuidad.isBlank() || tarjeta.isBlank() || tarjeta.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Sin esta informacion no se puede realizar la compra. Compra Cancelada.", "Advertencia", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
         char[] ultimosDigitos = ultimosDigitos(tarjeta);
         int anno = LocalDateTime.now().getYear();
         int mes = LocalDateTime.now().getMonthValue();
         int dia = LocalDateTime.now().getDayOfMonth();
         jTextAreaInfo.setText("Cantidad de productos : " + carrito.getCantidadProductos() + "\n\nSubtotal : " + carrito.calcularSubTotal(0) + "$\n\nIVA: " + carrito.calcularIVA() + "$\n\nTotal a pagar: " + carrito.calcularTotalIVA() + "$\n\nMetodo de pago:");
-        jTextAreaDireccion.setText("Calle Principal: " + calle + "\nColonia: " + colonia + "\nCuidad: " + cuidad + "\n Fecha de compra: " + dia + " / " + mes + " / " + anno);
+        jTextAreaDireccion.setText("Calle Principal: " + calle + "\nColonia: " + colonia + "\nCuidad: " + cuidad + "\nFecha de compra: " + dia + " / " + mes + " / " + anno);
         jTextAreaTarjeta.setText("Terminación de Tarjeta: " + new String(ultimosDigitos));
         jDialog2.pack();
         jDialog2.setLocationRelativeTo(null);
@@ -797,13 +822,17 @@ public class PantallaCatalago extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonRealizarCompraActionPerformed
 
     public char[] ultimosDigitos(String tarjeta) {
-        if (tarjeta.isEmpty() || tarjeta.isBlank() || tarjeta.length() < 4) {
+        if (tarjeta.isEmpty() || tarjeta.isBlank() || tarjeta.length() < 16) {
             return new char[]{'0', '0', '0', '0'};
         }
         return tarjeta.substring(tarjeta.length() - 4).toCharArray();
     }
     private void jButtonVaciarCarritoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVaciarCarritoActionPerformed
         // TODO add your handling code here:
+        if (carrito.getCantidadProductos() <= 0) {
+            JOptionPane.showMessageDialog(this, "El carrito no tiene ningun producto", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
         carrito.vaciarCarrito();
         actualizarCarrito();
         contador();
@@ -813,8 +842,8 @@ public class PantallaCatalago extends javax.swing.JFrame {
 
     private void jButtonCancelarCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarCompraActionPerformed
         // TODO add your handling code here:
-        String resp = JOptionPane.showInputDialog(this, "¿Cancelar compra [s/n]? ");
-        if (resp.charAt(0) == 's' || resp.charAt(0) == 'S') {
+        int confirmacion = JOptionPane.showConfirmDialog(this, "¿Estás seguro de que desea cancelar la compra?", "Confirmar Cancelar Compra", JOptionPane.YES_NO_OPTION);
+        if (confirmacion == JOptionPane.YES_OPTION) {
             jDialog2.setVisible(false);
             JOptionPane.showMessageDialog(this, "La compra se ha cancelado correctamnete");
         }
@@ -822,8 +851,8 @@ public class PantallaCatalago extends javax.swing.JFrame {
 
     private void jButtonConfirmarCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConfirmarCompraActionPerformed
         // TODO add your handling code here:
-        String resp = JOptionPane.showInputDialog(this, "¿Confirmar compra [s/n]? ");
-        if (resp.charAt(0) == 's' || resp.charAt(0) == 'S') {
+        int confirmacion = JOptionPane.showConfirmDialog(this, "¿Estás seguro de que desea realizar la compra?", "Confirmar Realizar Compra", JOptionPane.YES_NO_OPTION);
+        if (confirmacion == JOptionPane.YES_OPTION) {
             if (jTextAreaTarjeta.getText().equalsIgnoreCase("Terminación de Tarjeta: 0000")) {
                 JOptionPane.showMessageDialog(this, "La compra no se ha podido realizar porque la tarjeta es invalida");
                 return;
