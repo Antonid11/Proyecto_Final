@@ -790,7 +790,7 @@ public class PantallaCatalago extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "Sin esta informacion no se puede realizar la compra. Compra Cancelada.", "Advertencia", JOptionPane.WARNING_MESSAGE);
                 return;
             }
-            if (tarjeta.length() <= 16) {
+            if (tarjeta.length() >= 16) {
                 for (int i = 0; i < tarjeta.length(); i++) {
                     if (!Character.isDigit(tarjeta.charAt(i))) {
                         tarjetaValida = false;
