@@ -4,7 +4,6 @@
  */
 package proyecto_final;
 
-import java.util.Scanner;
 import javax.swing.JOptionPane;
 
 /**
@@ -12,8 +11,6 @@ import javax.swing.JOptionPane;
  * @author mayel
  */
 public class PantallaInicio extends javax.swing.JFrame {
-
-    public static Scanner sc = new Scanner(System.in);
 
     /**
      * Creates new form PantallaInicio
